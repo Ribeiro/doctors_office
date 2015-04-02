@@ -1,5 +1,9 @@
 class ConsultasController < ApplicationController
   before_action :set_consulta, only: [:show, :edit, :update, :destroy]
+  before_action :list_medicos, only: [:new, :edit]
+  before_action :list_pacientes, only: [:new, :edit]
+
+  respond_to :html, :js
 
   # GET /consultas
   # GET /consultas.json
@@ -24,17 +28,8 @@ class ConsultasController < ApplicationController
   # POST /consultas
   # POST /consultas.json
   def create
-    @consulta = Consulta.new(consulta_params)
-
-    respond_to do |format|
-      if @consulta.save
-        format.html { redirect_to @consulta, notice: 'Consulta was successfully created.' }
-        format.json { render :show, status: :created, location: @consulta }
-      else
-        format.html { render :new }
-        format.json { render json: @consulta.errors, status: :unprocessable_entity }
-      end
-    end
+    @consultas = Consulta.all
+    @consulta = Consulta.create(consulta_params)
   end
 
   # PATCH/PUT /consultas/1
@@ -51,20 +46,30 @@ class ConsultasController < ApplicationController
     end
   end
 
-  # DELETE /consultas/1
-  # DELETE /consultas/1.json
+  def delete
+    @consulta = Consulta.find(params[:consulta_id])
+  end
+
+  # DESTROY/consultas/1
+  # DESTROY/consultas/1.json
   def destroy
+    @consultas = Consulta.all
+    @consulta = Consulta.find(params[:id])
     @consulta.destroy
-    respond_to do |format|
-      format.html { redirect_to consultas_url, notice: 'Consulta was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_consulta
       @consulta = Consulta.find(params[:id])
+    end
+
+    def list_medicos
+      @medicos = Medico.all.map{ |m| [ m.nome, m.id ] }
+    end
+
+    def list_pacientes
+      @pacientes = Paciente.all.map{ |p| [ p.nome, p.id ] }
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

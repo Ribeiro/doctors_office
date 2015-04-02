@@ -1,33 +1,37 @@
-<%= form_for(@consulta) do |f| %>
-  <% if @consulta.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@consulta.errors.count, "error") %> prohibited this consulta from being saved:</h2>
+    <%= form_for @consulta, remote: true, html: { class: "form-horizontal", style: "display:inline;" } do |f| %>
+        <div class="modal-body">
+            <ul class="errors"></ul>
 
-      <ul>
-      <% @consulta.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+            <div class="control-group">
+          <%= f.label :data, class:"control-label" %>
+                <div class="controls">
+          <%= f.date_select :data %>
+                </div>
+            </div>
+            <div class="control-group">
+          <%= f.label :hora, class: "control-label" %>
+                <div class="controls">
+          <%= f.time_select :hora %>
+                </div>
+            </div>
 
-  <div class="field">
-    <%= f.label :data %><br>
-    <%= f.date_select :data %>
-  </div>
-  <div class="field">
-    <%= f.label :hora %><br>
-    <%= f.time_select :hora %>
-  </div>
-  <div class="field">
-    <%= f.label :medico_id %><br>
-    <%= f.text_field :medico_id %>
-  </div>
-  <div class="field">
-    <%= f.label :paciente_id %><br>
-    <%= f.text_field :paciente_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+      <div class="control-group">
+            <%= f.label :medico_id, class: "control-label" %>
+                <div class="controls">
+                    <%= f.select(:medico_id, options_for_select(@medicos)) %>
+                </div>
+            </div>
+
+      <div class="control-group">
+            <%= f.label :paciente_id, class: "control-label" %>
+                <div class="controls">
+                    <%= f.select(:paciente_id, options_for_select(@pacientes)) %>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <%= f.submit class: "btn btn-primary" %>
+            <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+        </div>
+    <% end %>

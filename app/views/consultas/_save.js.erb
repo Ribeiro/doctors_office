@@ -1,0 +1,10 @@
+  $("ul.errors").html("")
+
+  <% if @consulta.errors.any? %>
+      <% @consulta.errors.full_messages.each do |message| %>
+      $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+  <% else %>
+      $(".consulta-index").html("<%= escape_javascript(render 'index') %>")
+      $("#consulta-modal").modal("hide")
+  <% end %>

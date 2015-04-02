@@ -1,0 +1,11 @@
+    <div class="modal-header">
+    <h3>Exclusão de Consulta</h3>
+    </div>
+    <div class="modal-body">
+    <ul class="errors"></ul>
+        Confirma a exclusão da consulta com o Dr. <b><%= @consulta.medico.nome %></b> com o paciente <b><%= @consulta.paciente.nome %>?
+    </div>
+    <div class="modal-footer">
+        <%= link_to "Sim!", consulta_path(@consulta), method: :delete, remote: true, class: "btn btn-danger" %>
+        <%= link_to "Não!", "#", class: "btn", data: { dismiss: "modal" } %>
+    </div>

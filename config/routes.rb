@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: "consultas#index"
 
-  resources :consultas
+  resources :consultas do
+    get "delete"
+  end
 
   resources :pacientes
 

@@ -1,31 +1,23 @@
-<h1>Listing consultas</h1>
+<div class="container">
+      <h1>Consultas</h1>
+        <div class="well">
+            <%= link_to "Nova", new_consulta_path, remote: true, class: "btn btn-success" %>
+        </div>
+        <div class="new-consulta"></div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Hora</th>
+                  <th>Médico</th>
+                  <th>Paciente</th>
+                  <th colspan="3">Ação</th>
+                </tr>
+            </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Data</th>
-      <th>Hora</th>
-      <th>Medico</th>
-      <th>Paciente</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @consultas.each do |consulta| %>
-      <tr>
-        <td><%= consulta.data %></td>
-        <td><%= consulta.hora %></td>
-        <td><%= consulta.medico %></td>
-        <td><%= consulta.paciente %></td>
-        <td><%= link_to 'Show', consulta %></td>
-        <td><%= link_to 'Edit', edit_consulta_path(consulta) %></td>
-        <td><%= link_to 'Destroy', consulta, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Consulta', new_consulta_path %>
+            <tbody class="consulta-index">
+                <%= render "index" %>
+            </tbody>
+        </table>
+</div>
+<div id="consulta-modal" class="modal hide fade"></div>

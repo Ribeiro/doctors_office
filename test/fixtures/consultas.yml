@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: 2015-04-02
+  hora: 2015-04-02 15:42:50
+  medico_id: 
+  paciente_id: 
+
+two:
+  data: 2015-04-02
+  hora: 2015-04-02 15:42:50
+  medico_id: 
+  paciente_id: 

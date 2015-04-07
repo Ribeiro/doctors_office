@@ -5,13 +5,13 @@
             <div class="control-group">
           <%= f.label :data, class:"control-label" %>
                 <div class="controls">
-          <%= f.date_select :data %>
+                    <%= f.text_field :data, :class => 'datepicker' %>
                 </div>
             </div>
             <div class="control-group">
           <%= f.label :hora, class: "control-label" %>
                 <div class="controls">
-          <%= f.time_select :hora %>
+                     <%= f.text_field :hora, :class => 'input-small bootstrap-timepicker' %>
                 </div>
             </div>
 
@@ -35,3 +35,17 @@
             <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
         </div>
     <% end %>
+
+    <script>
+    $(document).ready(function(){
+        $('.datepicker').datepicker({ format: 'dd/mm/yyyy',
+                                                   orientation: 'auto'
+                                                });
+
+        $('.bootstrap-timepicker').timepicker({ minuteStep: 5,
+                                                           showInputs: false,
+                                                           disableFocus: true
+                                                        });
+
+    });
+    </script>
